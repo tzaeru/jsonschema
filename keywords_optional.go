@@ -15,12 +15,12 @@ import (
 )
 
 const (
-	hostname       string = `^([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])(\.([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]{0,61}[a-zA-Z0-9]))*$`
-	unescapedTilda        = `\~[^01]`
-	endingTilda           = `\~$`
-	schemePrefix          = `^[^\:]+\:`
-	uriTemplate           = `\{[^\{\}\\]*\}`
-	uuid                  = `^[[:xdigit:]]{8}-[[:xdigit:]]{4}-[[:xdigit:]]{4}-[[:xdigit:]]{4}-[[:xdigit:]]{12}$`
+	hostname       = `^([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])(\.([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]{0,61}[a-zA-Z0-9]))*$`
+	unescapedTilda = `\~[^01]`
+	endingTilda    = `\~$`
+	schemePrefix   = `^[^\:]+\:`
+	uriTemplate    = `\{[^\{\}\\]*\}`
+	uuid           = `^[[:xdigit:]]{8}-[[:xdigit:]]{4}-[[:xdigit:]]{4}-[[:xdigit:]]{4}-[[:xdigit:]]{12}$`
 )
 
 var (

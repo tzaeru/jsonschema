@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/qri-io/jsonpointer"
 	jptr "github.com/qri-io/jsonpointer"
 )
 
@@ -93,7 +92,7 @@ func (c ContentEncoding) ValidateKeyword(ctx context.Context, currentState *Vali
 
 func (c ContentEncoding) Register(uri string, registry *SchemaRegistry) {}
 
-func (c ContentEncoding) Resolve(pointer jsonpointer.Pointer, uri string) *Schema {
+func (c ContentEncoding) Resolve(pointer jptr.Pointer, uri string) *Schema {
 	return nil
 }
 
