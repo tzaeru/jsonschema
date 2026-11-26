@@ -73,6 +73,8 @@ func (vs *ValidationState) NewSubState() *ValidationState {
 func (vs *ValidationState) ClearState() {
 	vs.EvaluatedPropertyNames = &map[string]bool{}
 	vs.LocalEvaluatedPropertyNames = &map[string]bool{}
+	vs.LastEvaluatedIndex = -1
+	vs.LocalLastEvaluatedIndex = -1
 	if len(vs.Misc) > 0 {
 		vs.Misc = map[string]interface{}{}
 	}

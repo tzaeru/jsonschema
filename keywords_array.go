@@ -352,12 +352,12 @@ func (ai *AdditionalItems) ValidateKeyword(ctx context.Context, currentState *Va
 				}
 				subState := currentState.NewSubState()
 				subState.ClearState()
-				subState.SetEvaluatedIndex(i)
 				subState.DescendBase("additionalItems")
 				subState.DescendRelative("additionalItems")
 				subState.DescendInstance(strconv.Itoa(i))
 
 				(*Schema)(ai).ValidateKeyword(ctx, subState, arr[i])
+				subState.SetEvaluatedIndex(i)
 				currentState.UpdateEvaluatedPropsAndItems(subState)
 			}
 		}

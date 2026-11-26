@@ -659,6 +659,7 @@ func (up *UnevaluatedProperties) ValidateKeyword(ctx context.Context, currentSta
 				currentState.AddError(data, "unevaluated properties are not allowed")
 				return
 			}
+			subState.ClearState()
 			subState.DescendInstanceFromState(currentState, key)
 
 			(*Schema)(up).ValidateKeyword(ctx, subState, obj[key])

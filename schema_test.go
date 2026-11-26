@@ -757,6 +757,51 @@ func TestValidateBytes(t *testing.T) {
 			[]string{
 				`/: [1,2,3] unevaluated items are not allowed`,
 			}},
+		{`{"items":{"items":[{"type":"number"},{"type":"number"}], "additionalItems":false}}`,
+			`[[1,2], [1,2], [1,2], [1,2,"evil"]]`,
+			[]string{
+				`/3: [1,2,"evil"] additional items are not allowed`,
+			}},
+		{`{"items":{"items":[{"type":"number"},{"type":"number"}], "unevaluatedItems":false}}`,
+			`[[1,2], [1,2], [1,2], [1,2,"evil"]]`,
+			[]string{
+				`/3: [1,2,"evil"] unevaluated items are not allowed`,
+			}},
+		{`{"items":{"allOf":[{"type":"array"}], "items":[{"type":"number"},{"type":"number"}], "additionalItems":false}}`,
+			`[[1,2], [1,2], [1,2], [1,2,"evil"]]`,
+			[]string{
+				`/3: [1,2,"evil"] additional items are not allowed`,
+			}},
+		{`{"items":{"properties":{"point":{"items":[{"type":"number"},{"type":"number"}], "additionalItems":false}}}}`,
+			`[{"point":[1,2]}, {"point":[1,2]}, {"point":[1,2]}, {"point":[1,2,"evil"]}]`,
+			[]string{
+				`/3/point: [1,2,"evil"] additional items are not allowed`,
+			}},
+		{`{"items":[{}, {}, {}, {"items":[{"type":"number"}], "additionalItems":false}]}`,
+			`[0, 0, 0, [1,"evil"]]`,
+			[]string{
+				`/3: [1,"evil"] additional items are not allowed`,
+			}},
+		{`{"items":[{}], "additionalItems":{"items":[{"type":"number"}], "additionalItems":false}}`,
+			`[0, [1,"evil"]]`,
+			[]string{
+				`/1: [1,"evil"] additional items are not allowed`,
+			}},
+		{`{"properties":{"tags":{"items":{"type":"string"}}, "point":{"items":[{"type":"number"},{"type":"number"}], "additionalItems":false}}}`,
+			`{"tags":["a","b","c"], "point":[1,2,"evil"]}`,
+			[]string{
+				`/point: [1,2,"evil"] additional items are not allowed`,
+			}},
+		{`{"unevaluatedProperties":{"items":[{"type":"string"}], "additionalItems":{"type":"number"}}}`,
+			`{"a":["x",1,1,1], "b":["x","evil"]}`,
+			[]string{
+				`/b/1: "evil" type should be number, got string`,
+			}},
+		{`{"items":{"type":"number"}, "if":{"items":[{}], "additionalItems":false}, "else":false}`,
+			`[1,2,3]`,
+			[]string{
+				`/: [1,2,3] schema is always false`,
+			}},
 	}
 
 	for i, c := range cases {
