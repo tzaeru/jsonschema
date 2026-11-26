@@ -115,14 +115,6 @@ func (vs *ValidationState) UpdateEvaluatedPropsAndItems(subState *ValidationStat
 	}
 }
 
-func copySet(input map[string]bool) map[string]bool {
-	copy := make(map[string]bool, len(input))
-	for k, v := range input {
-		copy[k] = v
-	}
-	return copy
-}
-
 func joinSets(consumer *map[string]bool, supplier map[string]bool) {
 	for k, v := range supplier {
 		(*consumer)[k] = v

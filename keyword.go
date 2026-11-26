@@ -132,7 +132,7 @@ func (r *KeywordRegistry) IsNotSupportedKeyword(prop string) bool {
 
 // IsRegistryLoaded checks if any keywords are present
 func (r *KeywordRegistry) IsRegistryLoaded() bool {
-	return r.keywordRegistry != nil && len(r.keywordRegistry) > 0
+	return len(r.keywordRegistry) > 0
 }
 
 // RegisterKeyword registers a keyword with the registry
